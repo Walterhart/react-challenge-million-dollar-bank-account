@@ -31,11 +31,22 @@ export default function App() {
 		4. Your code should be as DRY as possible!
 */
 
+	const handleOnChange=(e)=>{
+		const {name, value} = event.target
+		setUserInput(prevInputs => ({...prevInputs,[name]: value}))
+	}
+	
+	const handleSubmit=(e)=>{
+		e.preventDefault()
+		let password = Object.values(userInput).join("")
+		setVerified(passCode === password)
+	}
+	
 	return (
 		<div className="wrapper">
 			<Header />
 
-			<form>
+			<form onSubmit={handleSubmit}>
 			
 				<Message status={verified} />
 
@@ -43,12 +54,17 @@ export default function App() {
 					<input
 						required
 						type="password"
+						onChange={handleOnChange}
+						value={userInput.charOne}
 						name="charOne"
+						maxLength="1"
 					/>
 
 					<input 
 						required 
 						type="password" 
+						onChange={handleOnChange}
+						value={userInput.chartwo}
 						name="charTwo" 
 						maxLength="1" 
 					/>
@@ -56,6 +72,8 @@ export default function App() {
 					<input 
 						required 
 						type="password" 
+						onChange={handleOnChange}
+						value={userInput.charThree}
 						name="charThree" 
 						maxLength="1" 
 					/>
@@ -63,6 +81,8 @@ export default function App() {
 					<input 
 						required 
 						type="password" 
+						onChange={handleOnChange}
+						value={userInput.charFour}
 						name="charFour" 
 						maxLength="1" 
 					/>
